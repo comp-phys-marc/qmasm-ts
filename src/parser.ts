@@ -650,11 +650,12 @@ class Parser {
                 args.push(val);
             } else if (this.matchNext(tokens.slice(j), [Token.Continue, Token.Comma, Token.Int])) {
                 let previous = args[args.length - 1].val;
+                let step = previous - args[args.length - 2].val;
                 let following = Number(tokens[j + 2][1]);
 
                 let gen = previous;
                 while (gen < following - 1) {
-                    gen += 1;
+                    gen += step;
                     args.push(new Int(gen));
                 }
             } else {

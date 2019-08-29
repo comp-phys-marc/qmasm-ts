@@ -272,19 +272,7 @@ export default [
         new Qubit ( 'alfa[idx]' ),
         new Qubit ( 'zulu' ) ),
     new Let (
-        new Expression ( [ new Int(3) ] ),
-        new Variable ( 'idx' ) ),
-    new Chain (
-        new Qubit ( 'alfa[idx]' ),
-        new Qubit ( 'zulu' ) ),
-    new Let (
         new Expression ( [ new Int(4) ] ),
-        new Variable ( 'idx' ) ),
-    new Chain (
-        new Qubit ( 'alfa[idx]' ),
-        new Qubit ( 'zulu' ) ),
-    new Let (
-        new Expression ( [ new Int(5) ] ),
         new Variable ( 'idx' ) ),
     new Chain (
         new Qubit ( 'alfa[idx]' ),
@@ -296,19 +284,7 @@ export default [
         new Qubit ( 'alfa[idx]' ),
         new Qubit ( 'zulu' ) ),
     new Let (
-        new Expression ( [ new Int(7) ] ),
-        new Variable ( 'idx' ) ),
-    new Chain (
-        new Qubit ( 'alfa[idx]' ),
-        new Qubit ( 'zulu' ) ),
-    new Let (
         new Expression ( [ new Int(8) ] ),
-        new Variable ( 'idx' ) ),
-    new Chain (
-        new Qubit ( 'alfa[idx]' ),
-        new Qubit ( 'zulu' ) ),
-    new Let (
-        new Expression ( [ new Int(9) ] ),
         new Variable ( 'idx' ) ),
     new Chain (
         new Qubit ( 'alfa[idx]' ),
@@ -320,19 +296,7 @@ export default [
         new Qubit ( 'alfa[idx]' ),
         new Qubit ( 'zulu' ) ),
     new Let (
-        new Expression ( [ new Int(11) ] ),
-        new Variable ( 'idx' ) ),
-    new Chain (
-        new Qubit ( 'alfa[idx]' ),
-        new Qubit ( 'zulu' ) ),
-    new Let (
         new Expression ( [ new Int(12) ] ),
-        new Variable ( 'idx' ) ),
-    new Chain (
-        new Qubit ( 'alfa[idx]' ),
-        new Qubit ( 'zulu' ) ),
-    new Let (
-        new Expression ( [ new Int(13) ] ),
         new Variable ( 'idx' ) ),
     new Chain (
         new Qubit ( 'alfa[idx]' ),

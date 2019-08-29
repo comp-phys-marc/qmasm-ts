@@ -39,6 +39,10 @@ Language documentation is provided by Scott Pakin [here](https://github.com/lanl
 
 - Basic Jasmine Unit Tests
 
+## New in Latest Subversion
+
+- Support for loops with different steps
+
 ## Usage
 
 Import the parse function or parseString function from the package.
