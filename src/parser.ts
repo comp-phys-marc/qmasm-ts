@@ -366,7 +366,7 @@ class Parser {
     parseSymbol(tokens:Array<[Token, (number | String)?]>): [Qubit | Variable | Ancilliary | GetOutput, number] {
         let name:string;
 
-        if (this.matchNext(tokens, [Token.Identifier])) {
+        if (this.matchNext(tokens, [Token.Identifier]) || this.matchNext(tokens, [Token.Ancilliary])) {
             name = tokens[0][1].toString();
         } else if (this.isSubContext && this.matchNext(tokens, [Token.Next])) {
             name = '!next';
