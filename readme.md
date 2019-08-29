@@ -1,6 +1,6 @@
 # QMASM TypeScript
 
-QMASM, Los Alamos National Laboratory's macro assembler for D-wave's quantum annelaer, implemented in TypeScript.
+QMASM, Los Alamos National Laboratory's macro assembler for D-wave's quantum annealer, implemented in TypeScript.
 
 Language documentation is provided by Scott Pakin [here](https://github.com/lanl/qmasm/wiki).
 
