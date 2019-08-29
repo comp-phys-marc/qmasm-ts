@@ -1,0 +1,37 @@
+{
+  "name": "qmasm-ts",
+  "version": "1.0.0",
+  "description": "QMASM, Scott Pakin's quantum macro assembly language for D-Wave's quantum annealers, implemented in TypeScript.",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "ts-node node_modules/jasmine/bin/jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MackEdweise/qmasm-ts.git"
+  },
+  "keywords": [
+    "Quantum",
+    "Programming",
+    "D-Wave",
+    "Annealing",
+    "Adiabatic",
+    "Language"
+  ],
+  "author": "Marcus Edwards",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MackEdweise/qmasm-ts/issues"
+  },
+  "homepage": "https://github.com/MackEdweise/qmasm-ts#readme",
+  "dependencies": {
+    "path": "^0.12.7",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.4.0",
+    "@types/node": "^12.7.2",
+    "jasmine": "^3.4.0"
+  }
+}

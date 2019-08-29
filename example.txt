@@ -1,0 +1,208 @@
+#################################################
+# This program does nothing useful.  It merely  #
+# serves as a showcase of QMASM's features.     #
+#                                               #
+# By Scott Pakin <pakin@lanl.gov>               #
+#################################################
+
+# Weights
+abc 0.5
+def 0.5   # Comments are allowed on the same line as other statements.
+
+# Strengths
+abc def 0.5
+
+# Assertions
+!assert abc = 0 || def = 0
+
+# Chains
+abc = ghi
+
+# Anti-chains
+def /= jkl
+
+# Let-binding to a symbol
+!let yes := True
+
+# Pins
+jkl := yes
+
+# Equivalences
+jkl <-> mno
+
+# Includes
+!include "comparator"
+
+# Assertions
+!assert 1 + 2 + 3 = 6 || 4 + 5 * 6 = 4 + (5 * 6) && 4 + 5 * 6 < (4 + 5) * 6
+!assert mno + 8 /= 3**(def + 1)
+!assert 56^1 = (1<<4 | 1<<1 | 1<<!99)*(7&~4)
+!assert 1 + 1 = 25 || 25/3 >= 25%7
+
+# Macro definitions
+!begin_macro XOR
+!assert Y = A^B
+  A    0.5
+  B   -0.5
+  Y   -0.5
+  $a1  1
+
+  A B   -0.5
+  A Y   -0.5
+  A $a1  1
+  B Y    0.5
+  B $a1 -1
+  Y $a1 -1
+!end_macro XOR
+
+# Macro uses
+!use_macro XOR excl_or
+excl_or.A := true
+excl_or.B := FaLsE   # Note: case-insensitive
+
+# Let-binding to an expression
+!let idx1 := (6 + 1)*2*(4 - 1)
+!let idx2 := idx1/3
+alfa[idx1] = alfa[idx2]
+
+# Conditionals
+!if idx1 < idx2
+  alfa[idx1] = excl_or.Y
+!else
+  alfa[idx2] = excl_or.Y
+!end_if
+
+# Iteration over integer values
+!for idx := 0, 2, ..., 15
+  alfa[idx] = zulu
+!end_for
+
+# Iteration over symbols
+!for icao := alfa, bravo, charlie, delta, echo
+  icao[42] zulu -3.25
+!end_for
+
+# Chain of macros
+!begin_macro XOR_chain
+  !use_macro XOR xor
+  A = xor.A
+  B = xor.B
+  Y = xor.Y
+  Y = !next.A
+!end_macro XOR_chain
+!use_macro XOR_chain first second third
+# (In this chain, first.Y = second.A and second.Y = third.A.)
+
+# Renaming symbols
+big       -0.75
+small      0.75
+big small  0.50
+big   -> bigger
+small -> smaller
+six[2:0] := 110
+!assert six[0] /= 1
+six[2] = six[1]
+six[1] /= six[0]
+six[2:0] -> six[0:2]  # Convert from 110 to 011.
+[ [ 23, '################################################' ],
+  [ 13 ],
+  [ 23, ' This program does nothing useful.  It merely  #' ],
+  [ 13 ],
+  [ 23, ' serves as a showcase of QMASM\'s features.     #' ],
+  [ 13 ],
+  [ 23, '                                               #' ],
+  [ 13 ],
+  [ 23, ' By Scott Pakin <pakin@lanl.gov>               #' ],
+  [ 13 ],
+  [ 23, '################################################' ],
+  [ 13 ],
+  [ 13 ],
+  [ 23, ' Weights' ],
+  [ 13 ],
+  [ 24, 'abc' ],
+  [ 12, 0.5 ],
+  [ 13 ],
+  [ 24, 'def' ],
+  [ 12, 0.5 ],
+  [ 23,
+    ' Comments are allowed on the same line as other statements.' ],
+  [ 13 ],
+  [ 13 ],
+  [ 23, ' Strengths' ],
+  [ 13 ],
+  [ 24, 'abc' ],
+  [ 24, 'def' ],
+  [ 12, 0.5 ],
+  [ 13 ],
+  [ 13 ],
+  [ 23, ' Assertions' ],
+  [ 13 ],
+  [ 30 ],
+  [ 24, 'abc' ],
+  [ 5 ],
+  [ 11, 0 ],
+  [ 29 ],
+  [ 24, 'def' ],
+  [ 5 ],
+  [ 11, 0 ],
+  [ 13 ],
+  [ 13 ],
+  [ 23, ' Chains' ],
+  [ 13 ],
+  [ 24, 'abc' ],
+  [ 5 ],
+  [ 24, 'ghi' ],
+  [ 13 ],
+  [ 13 ],
+  [ 23, ' Anti-chains' ],
+  [ 13 ],
+  [ 24, 'def' ],
+  [ 6 ],
+  [ 24, 'jkl' ],
+  [ 13 ],
+  [ 13 ],
+  [ 23, ' Let-binding to a symbol' ],
+  [ 13 ],
+  [ 32 ],
+  [ 24, 'yes' ],
+  [ 9 ],
+  [ 49 ],
+  [ 13 ],
+  [ 13 ],
+  [ 23, ' Pins' ],
+  [ 13 ],
+  [ 24, 'jkl' ],
+  [ 9 ],
+  [ 24, 'yes' ],
+  [ 13 ],
+  [ 13 ],
+  [ 23, ' Equivalences' ],
+  [ 13 ],
+  [ 24, 'jkl' ],
+  [ 10 ],
+  [ 24, 'mno' ],
+  [ 13 ],
+  [ 13 ],
+  [ 23, ' Includes' ],
+  [ 13 ],
+  [ 33 ],
+  [ 25, [String: '"comparator"'] ],
+  [ 13 ],
+  [ 13 ],
+  [ 23, ' Assertions' ],
+  [ 13 ],
+  [ 30 ],
+  [ 11, 1 ],
+  [ 0 ],
+  [ 11, 2 ],
+  [ 0 ],
+  [ 11, 3 ],
+  [ 5 ],
+  [ 11, 6 ],
+  [ 29 ],
+  [ 11, 4 ],
+  [ 0 ],
+  [ 11, 5 ],
+  [ 2 ],
+  [ 11, 6 ],
+  ... 389 more items ]
