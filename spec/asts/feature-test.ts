@@ -184,7 +184,7 @@ export default [
             new Weight ( 0.5, new Qubit ( 'A' ) ),
             new Weight ( -0.5, new Qubit ( 'B' ) ),
             new Weight ( -0.5, new Qubit ( 'Y' ) ),
-            new Weight ( 1, new Ancilliary ( undefined ) ),
+            new Weight ( 1, new Ancilliary ( '$a1' ) ),
             new Coupling (
                 -0.5,
                 new Qubit ( 'A' ),
@@ -196,7 +196,7 @@ export default [
             new Coupling (
                 1,
                 new Qubit ( 'A' ),
-                new Ancilliary ( undefined ) ),
+                new Ancilliary ( '$a1' ) ),
             new Coupling (
                 0.5,
                 new Qubit ( 'B' ),
@@ -204,11 +204,11 @@ export default [
             new Coupling (
                 -1,
                 new Qubit ( 'B' ),
-                new Ancilliary ( undefined ) ),
+                new Ancilliary ( '$a1' ) ),
             new Coupling (
                 -1,
                 new Qubit ( 'Y' ),
-                new Ancilliary ( undefined ) ),    
+                new Ancilliary ( '$a1' ) ),    
         ] ),
     new UseMacro ( 'XOR', [ 'excl_or' ] ),
     new SetParam (
