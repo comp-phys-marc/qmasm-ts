@@ -1,6 +1,8 @@
 
+/** Base class representing a basic AST node. */
 class AstNode {}
 
+/** Class representing an identifier. */
 class Id extends AstNode {
     id:string;
     constructor(id:string) {
@@ -9,6 +11,7 @@ class Id extends AstNode {
     }
 }
 
+/** Class representing an include. */
 class Include extends AstNode {
     val:string;
     constructor(val:string) {
@@ -17,6 +20,7 @@ class Include extends AstNode {
     }
 }
 
+/** Class representing a macro usage. */
 class UseMacro extends AstNode {
     macroName:string;
     instNames:Array<string>;
@@ -27,6 +31,7 @@ class UseMacro extends AstNode {
     }
 }
 
+/** Class representing a macro. */
 class Macro extends AstNode {
     name:string;
     nodes:Array<AstNode>;
@@ -37,6 +42,7 @@ class Macro extends AstNode {
     }
 }
 
+/** Base class representing a basic parameter. */
 class Parameter extends AstNode {
     name?:string;
     constructor(name?:string) {
@@ -45,6 +51,7 @@ class Parameter extends AstNode {
     }
 }
 
+/** Class representing an array. */
 class Arr<Parameter> extends Parameter {
     vals:Array<Parameter>;
     size:Array<Int>;
@@ -55,6 +62,7 @@ class Arr<Parameter> extends Parameter {
     }
 }
 
+/** Class representing a float. */
 class Float extends Parameter {
     val:AstNode | number;
     constructor(val:AstNode | number) {
@@ -63,6 +71,7 @@ class Float extends Parameter {
     }
 }
 
+/** Class representing a string. */
 class Str extends Parameter {
     val:AstNode | string;
     constructor(val:AstNode | string) {
@@ -71,6 +80,7 @@ class Str extends Parameter {
     }
 }
 
+/** Class representing a chain. */
 class Chain extends AstNode {
     firstQubit:Qubit;
     secondQubit:Qubit;
@@ -81,6 +91,7 @@ class Chain extends AstNode {
     }
 }
 
+/** Class representing an anti-chain. */
 class AntiChain extends AstNode {
     firstQubit:Qubit;
     secondQubit:Qubit;
@@ -91,6 +102,7 @@ class AntiChain extends AstNode {
     }
 }
 
+/** Class representing a pin. */
 class Pin extends AstNode {
     val:Variable | Expression;
     qubit:Qubit;
@@ -101,6 +113,7 @@ class Pin extends AstNode {
     }
 }
 
+/** Class representing an equivalence. */
 class Equivalence extends AstNode {
     firstQubit:Qubit;
     secondQubit:Qubit;
@@ -111,6 +124,7 @@ class Equivalence extends AstNode {
     }
 }
 
+/** Class representing a conversion. */
 class Convert extends AstNode {
     firstQubit:Qubit;
     secondQubit:Qubit;
@@ -121,6 +135,7 @@ class Convert extends AstNode {
     }
 }
 
+/** Class representing an iterator. */
 class Iterator extends AstNode {
     name:string;
     vals:Array<Int | Variable>;
@@ -131,6 +146,7 @@ class Iterator extends AstNode {
     }
 }
 
+/** Class representing a range. */
 class Range extends Parameter {
     lower:number;
     upper:number;
@@ -141,6 +157,7 @@ class Range extends Parameter {
     }
 }
 
+/** Class representing an integer. */
 class Int extends Parameter {
     val:number;
     constructor(val:number) {
@@ -149,6 +166,7 @@ class Int extends Parameter {
     }
 }
 
+/** Class representing a boolean. */
 class Bool extends Parameter {
     val:boolean;
     constructor(val:boolean) {
@@ -157,6 +175,7 @@ class Bool extends Parameter {
     }
 }
 
+/** Class representing a weight. */
 class Weight extends AstNode {
     val:AstNode | number;
     qubit:Qubit;
@@ -167,6 +186,8 @@ class Weight extends AstNode {
     }
 }
 
+
+/** Class representing a coupling. */
 class Coupling extends AstNode {
     val:AstNode | number;
     firstQubit:Qubit;
@@ -179,6 +200,7 @@ class Coupling extends AstNode {
     }
 }
 
+/** Class representing a qubit. */
 class Qubit extends Parameter {
     name:string;
     constructor(name:string) {
@@ -187,6 +209,7 @@ class Qubit extends Parameter {
     }
 }
 
+/** Class representing a qubit array. */
 class QubitArray extends Qubit {
     name:string;
     range:Range;
@@ -196,6 +219,7 @@ class QubitArray extends Qubit {
     }
 }
 
+/** Class representing a register. */
 class Register extends Parameter {
     name:string;
     constructor(name:string) {
@@ -216,6 +240,7 @@ class Register extends Parameter {
     }
 }
 
+/** Class representing an ancilliary. */
 class Ancilliary extends Parameter {
     name:string;
     constructor(name:string) {
@@ -224,6 +249,7 @@ class Ancilliary extends Parameter {
     }
 }
 
+/** Class representing a variable. */
 class Variable extends Parameter {
     name:string;
     constructor(name:string) {
@@ -232,6 +258,7 @@ class Variable extends Parameter {
     }
 }
 
+/** Class representing a parameter assignment. */
 class SetParam extends AstNode {
     macroInstance:string;
     val:AstNode;
@@ -242,6 +269,7 @@ class SetParam extends AstNode {
     }
 }
 
+/** Class representing a output retrieval. */
 class GetOutput extends Qubit {
     macroInstance:string;
     qubit:Qubit;
@@ -252,6 +280,7 @@ class GetOutput extends Qubit {
     }
 }
 
+/** Class representing a condition. */
 class Condition extends AstNode {
     condition:Expression;
     ifClause:Array<AstNode>;
@@ -264,129 +293,70 @@ class Condition extends AstNode {
     }
 }
 
+/** Class representing exponential. */
 class Exp extends Parameter {}
 
-class Minus extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing minus. */
+class Minus extends Parameter {}
 
-class Or extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing a union. */
+class Or extends Parameter {}
 
-class Plus extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing plus. */
+class Plus extends Parameter {}
 
-class Times extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing times. */
+class Times extends Parameter {}
 
-class Equals extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing an equality. */
+class Equals extends Parameter {}
 
-class NotEqual extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing an inequality. */
+class NotEqual extends Parameter {}
 
-class Divide extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing divide. */
+class Divide extends Parameter {}
 
-class Power extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing power. */
+class Power extends Parameter {}
 
-class Less extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing less than. */
+class Less extends Parameter {}
 
-class Bang extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing bang. */
+class Bang extends Parameter {}
 
+/** Class representing ampersand. */
+class Amp extends Parameter {}
 
-class Amp extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing pipe. */
+class Pipe extends Parameter {}
 
-class Pipe extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing tilde. */
+class Tilde extends Parameter {}
 
-class Tilde extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing greater than. */
+class More extends Parameter {}
 
-class More extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing left angle bracket. */
+class Left extends Parameter {}
 
-class Left extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing right angle bracket. */
+class Right extends Parameter {}
 
-class Right extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing intersection. */
+class And extends Parameter {}
 
-class And extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing modulus. */
+class Mod extends Parameter {}
 
-class Mod extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing greater than or equal to. */
+class Geq extends Parameter {}
 
-class Geq extends Parameter {
-    constructor() {
-        super();
-    }
-}
+/** Class representing less than or equal to. */
+class Leq extends Parameter {}
 
-class Leq extends Parameter {
-    constructor() {
-        super();
-    }
-}
-
+/** Class representing assignment. */
 class Let extends AstNode {
     expression:Expression;
     variable:Variable;
@@ -397,6 +367,7 @@ class Let extends AstNode {
     }
 }
 
+/** Class representing expression. */
 class Expression extends Parameter {
     elements:Array<Parameter>;
     constructor(elements:Array<Parameter>) {
@@ -405,6 +376,7 @@ class Expression extends Parameter {
     }
 }
 
+/** Class representing assertion. */
 class Assert extends AstNode {
     expression:Expression;
     constructor(expression:Expression) {

@@ -1,3 +1,4 @@
+/** Class representing a bad argument exception. */
 class BadArgumentError extends Error {
     constructor(message?: string) {
         super(message);
@@ -6,6 +7,7 @@ class BadArgumentError extends Error {
     }
 }
 
+/** Class representing a bad parameter exception. */
 class BadParameterError extends Error {
     constructor(message?: string) {
         super(message);
@@ -14,6 +16,7 @@ class BadParameterError extends Error {
     }
 }
 
+/** Class representing a bad macro exception. */
 class BadMacroError extends Error {
     constructor(message?: string) {
         super(message);
@@ -22,6 +25,7 @@ class BadMacroError extends Error {
     }
 }
 
+/** Class representing a bad macro name exception. */
 class BadMacroNameError extends Error {
     constructor(message?: string) {
         super(message);
@@ -30,6 +34,7 @@ class BadMacroNameError extends Error {
     }
 }
 
+/** Class representing a bad macro usage exception. */
 class BadUseMacroError extends Error {
     constructor(message?: string) {
         super(message);
@@ -38,6 +43,7 @@ class BadUseMacroError extends Error {
     }
 }
 
+/** Class representing an uninitialized macro exception. */
 class UninitializedMacroInstanceError extends Error {
     constructor(message?: string) {
         super(message);
@@ -46,6 +52,7 @@ class UninitializedMacroInstanceError extends Error {
     }
 }
 
+/** Class representing a wrong quote exception. */
 class WrongQuoteError extends Error {
     constructor(message?: string) {
         super(message);
@@ -54,6 +61,7 @@ class WrongQuoteError extends Error {
     }
 }
 
+/** Class representing a bad array exception. */
 class BadArrayError extends Error {
     constructor(message?: string) {
         super(message);
@@ -62,6 +70,7 @@ class BadArrayError extends Error {
     }
 }
 
+/** Class representing a bad register index exception. */
 class BadRegisterIndexError extends Error {
     constructor(message?: string) {
         super(message);
@@ -70,6 +79,7 @@ class BadRegisterIndexError extends Error {
     }
 }
 
+/** Class representing a bad declaration exception. */
 class BadDeclarationError extends Error {
     constructor(message?: string) {
         super(message);
@@ -78,6 +88,7 @@ class BadDeclarationError extends Error {
     }
 }
 
+/** Class representing a bad integer exception. */
 class BadIntError extends Error {
     constructor(message?: string) {
         super(message);
@@ -86,6 +97,7 @@ class BadIntError extends Error {
     }
 }
 
+/** Class representing a bad chain exception. */
 class BadChainError extends Error {
     constructor(message?: string) {
         super(message);
@@ -94,6 +106,7 @@ class BadChainError extends Error {
     }
 }
 
+/** Class representing a bad binding exception. */
 class BadBindingError extends Error {
     constructor(message?: string) {
         super(message);
@@ -102,6 +115,7 @@ class BadBindingError extends Error {
     }
 }
 
+/** Class representing a bad pin exception. */
 class BadPinError extends Error {
     constructor(message?: string) {
         super(message);
@@ -110,6 +124,7 @@ class BadPinError extends Error {
     }
 }
 
+/** Class representing a bad include exception. */
 class BadIncludeError extends Error {
     constructor(message?: string) {
         super(message);
@@ -118,6 +133,7 @@ class BadIncludeError extends Error {
     }
 }
 
+/** Class representing a bad equivalence exception. */
 class BadEquivalenceError extends Error {
     constructor(message?: string) {
         super(message);
@@ -126,6 +142,7 @@ class BadEquivalenceError extends Error {
     }
 }
 
+/** Class representing a bad format exception. */
 class BadFormatError extends Error {
     constructor(message?: string) {
         super(message);
@@ -134,6 +151,7 @@ class BadFormatError extends Error {
     }
 }
 
+/** Class representing a bad identifier exception. */
 class BadIdentifierError extends Error {
     constructor(message?: string) {
         super(message);
@@ -142,6 +160,7 @@ class BadIdentifierError extends Error {
     }
 }
 
+/** Class representing a bad loop exception. */
 class BadLoopError extends Error {
     constructor(message?: string) {
         super(message);
@@ -150,6 +169,7 @@ class BadLoopError extends Error {
     }
 }
 
+/** Class representing a bad iterator exception. */
 class BadIteratorError extends Error {
     constructor(message?: string) {
         super(message);
@@ -158,6 +178,7 @@ class BadIteratorError extends Error {
     }
 }
 
+/** Class representing a bad condition structure exception. */
 class BadConditionStructureError extends Error {
     constructor(message?: string) {
         super(message);
@@ -166,6 +187,7 @@ class BadConditionStructureError extends Error {
     }
 }
 
+/** Class representing an undeclared variable exception. */
 class UndeclaredVariableError extends Error {
     constructor(message?: string) {
         super(message);
@@ -174,6 +196,7 @@ class UndeclaredVariableError extends Error {
     }
 }
 
+/** Class representing an undeclared qubit exception. */
 class UndeclaredQubitError extends Error {
     constructor(message?: string) {
         super(message);
