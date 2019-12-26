@@ -111,14 +111,29 @@ const lookupMap:object = {
     '->': Token.Convert
 }
 
+/**
+ * Returns the token that represents a given string.
+ * @param ident - The string.
+ * @return The corresponding token.
+ */
 function lookup(ident:string): Token {
     return ident in lookupMap ? lookupMap[ident]: Token.Identifier;
 }
 
+/**
+ * Returns the string representation of a parameter token.
+ * @param tokens - The token.
+ * @return The string representation of the token.
+ */
 function inverseParamLookup(token:Token): string {
     return Object.keys(paramLookupMap).find((ident) => paramLookupMap[ident] == token);
 }
 
+/**
+ * Determines whether a token denotes a parameter.
+ * @param tokens - The token.
+ * @return Whether the token does NOT denote a parameter.
+ */
 function notParam(token:Token): boolean {
     return (Object.keys(paramLookupMap).map(key => paramLookupMap[key]).indexOf(token) == -1) && token != Token.Int && token != Token.Float && token && token != Token.Identifier;
 }

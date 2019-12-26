@@ -19,7 +19,7 @@
     "Language"
   ],
   "author": "Marcus Edwards",
-  "license": "See readme.md for license details.",
+  "license": "BSD-3-Clause-Attribution",
   "bugs": {
     "url": "https://github.com/MackEdweise/qmasm-ts/issues"
   },

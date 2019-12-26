@@ -74,6 +74,7 @@ import {
     Ancilliary
 } from './ast';
 
+/** Class representing a token parser. */
 class Parser {
 
     tokens:Array<[Token, (number | String)?]>;
@@ -88,6 +89,10 @@ class Parser {
     isSubContext:boolean;
     filePath:string;
     
+    /**
+     * Creates a parser.
+     * @param tokens - Tokens to parse.
+     */
     constructor(tokens:Array<[Token, (number | String)?]>, isSubContext:boolean=false, filePath:string='') {
         this.tokens = tokens;
         this.macros = [];
@@ -101,6 +106,10 @@ class Parser {
         this.filePath = filePath;
     }
 
+    /**
+     * Calling this method parses the code represented by the provided tokens.
+     * @return The abstract syntax tree.
+     */
     parse(): Array<AstNode> {
         let ast:Array<AstNode> = [];
         let i = 0;
@@ -132,6 +141,12 @@ class Parser {
         return ast;
     }
 
+    /**
+     * Delegates the parsing of the next set of tokens to the appropriate method.
+     * @param tokens - Remaining tokens to parse.
+     * @param allowVariables - Whether encountered identifiers should be consider variable initializations or references.
+     * @return A set of AST nodes.
+     */
     parseNode(tokens:Array<[Token, (number | String)?]>, allowVariables:boolean=false): Array<AstNode> {
         const token = tokens[0];
         switch(token[0]) {
@@ -245,6 +260,11 @@ class Parser {
         }
     }
 
+    /**
+     * Parses a logical and mathematical expression.
+     * @param tokens - Expression tokens to parse.
+     * @return A parsed expression.
+     */
     parseExpression(tokens:Array<[Token, (number | String)?]>): Expression {
         let elements:Array<Parameter> = [];
 
@@ -278,6 +298,11 @@ class Parser {
         return new Expression(elements);
     }
 
+    /**
+     * Parses a macro.
+     * @param tokens - Macro tokens to parse.
+     * @return A parsed macro.
+     */
     macro(tokens:Array<[Token, (number | String)?]>): Array<AstNode> {
         let name:string;
         let macroTokens:Array<[Token, (number | String)?]> = [];
@@ -304,6 +329,11 @@ class Parser {
         }
     }
 
+    /**
+     * Parses a macro usage.
+     * @param tokens - Macro usage tokens to parse.
+     * @return A parsed macro usage.
+     */
     use(tokens:Array<[Token, (number | String)?]>): Array<AstNode> {
         let macroName:string;
         let instNames:Array<string> = [];
@@ -326,6 +356,11 @@ class Parser {
         return [new UseMacro(macroName, instNames)]; 
     }
 
+    /**
+     * Parses a macro include.
+     * @param tokens - Macro include tokens to parse.
+     * @return A parsed macro include.
+     */
     include(token:[Token, (number | String)?]): Array<AstNode> {
         let name:string = token[1].toString();
 
@@ -351,6 +386,11 @@ class Parser {
         }
     }
 
+    /**
+     * Parses an assertion.
+     * @param tokens - Assertion tokens to parse.
+     * @return A parsed assertion.
+     */
     assert(tokens:Array<[Token, (number | String)?]>): Array<AstNode> {
         let exprTokens:Array<[Token, (number | String)?]> = [];
 
@@ -363,6 +403,11 @@ class Parser {
         return [new Assert(exp)];
     }
 
+    /**
+     * Parses an Identifier or Ancilliary symbol.
+     * @param tokens - Symbol tokens to parse.
+     * @return A parsed symbol.
+     */
     parseSymbol(tokens:Array<[Token, (number | String)?]>): [Qubit | Variable | Ancilliary | GetOutput, number] {
         let name:string;
 
@@ -420,6 +465,11 @@ class Parser {
         }
     }
 
+    /**
+     * Parses a symbol.
+     * @param tokens - Symbol tokens to parse.
+     * @return A parsed symbol.
+     */
     symbol(tokens:Array<[Token, (number | String)?]>): Array<AstNode> {
         let names:Array<Qubit | Variable | Ancilliary | GetOutput> = [];
 
@@ -514,6 +564,11 @@ class Parser {
         throw BadDeclarationError;
     }
 
+    /**
+     * Creates a new parser and copies the current parser's context to it.
+     * @param tokens - Symbol tokens for the child parser to parse.
+     * @return A new parser.
+     */
     childParser(tokens:Array<[Token, (number | String)?]>): Parser {
         let newParser = new Parser(tokens, true, this.filePath);
         newParser.symbols = this.symbols;
@@ -524,6 +579,11 @@ class Parser {
         return newParser;
     }
 
+    /**
+     * Parses an assignment.
+     * @param tokens - Tokens to parse.
+     * @return An array of AST nodes representing the assignment.
+     */
     let(tokens:Array<[Token, (number | String)?]>): Array<AstNode> {
         let name:string;
         let exprTokens:Array<[Token, (number | String)?]> = [];
@@ -545,6 +605,11 @@ class Parser {
         }
     }
 
+    /**
+     * Parses a conditional.
+     * @param tokens - Tokens to parse.
+     * @return An array of AST nodes representing the conditional.
+     */
     if(tokens:Array<[Token, (number | String)?]>): Array<AstNode> {
         let clauseTokens:Array<[Token, (number | String)?]> = [];
         let conditionTokens:Array<[Token, (number | String)?]> = [];
@@ -593,6 +658,14 @@ class Parser {
         }
     }
 
+    /**
+     * Parses a for loop using loop unrolling.
+     * 
+     * TODO: replace loop unrolling with symbolic loop representation.
+     * 
+     * @param tokens - Tokens to parse.
+     * @return An array of AST nodes representing the unrolled loop.
+     */
     for(tokens:Array<[Token, (number | String)?]>): Array<AstNode> {
         let iterName:string;
         let iterator:Iterator;
@@ -639,6 +712,11 @@ class Parser {
         }
     }
 
+    /**
+     * Parses a list of integer values.
+     * @param tokens - Tokens to parse.
+     * @return An array of AST nodes representing the integer values.
+     */
     matchIntList(tokens:Array<[Token, (number | String)?]>): Array<Int> {
         let args:Array<Int> = [];
         let j:number = 0;
@@ -670,6 +748,11 @@ class Parser {
         return args;
     }
 
+    /**
+     * Parses a list of symbols.
+     * @param tokens - Tokens to parse.
+     * @return An array of AST nodes representing the symbols.
+     */
     matchSymbolList(tokens:Array<[Token, (number | String)?]>): Array<Qubit | Variable | Ancilliary | GetOutput> {
         let args:Array<Qubit | Variable | Ancilliary | GetOutput> = [];
         let j:number = 0;
@@ -691,6 +774,11 @@ class Parser {
         return args;
     }
 
+    /**
+     * Parses an integer value.
+     * @param tokens - Tokens to parse.
+     * @return An AST node representing the value.
+     */
     matchInt(tokens:Array<[Token, (number | String)?]>): Int {
         let val:Int;
 
@@ -702,6 +790,12 @@ class Parser {
         return val;
     }
 
+    /**
+     * Checks if the next tokens match those expected.
+     * @param tokens - Remaining tokens to parse.
+     * @param expectedTokens - Expected tokens.
+     * @return Whether there is a match.
+     */
     matchNext(tokens:Array<[Token, (number | String)?]>, expectedTokens:Array<Token>): boolean {
         let matches = true;
         let i = 0;

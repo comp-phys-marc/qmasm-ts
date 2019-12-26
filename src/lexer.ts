@@ -1,10 +1,20 @@
 import { Token, lookup } from './token';
 import { WrongQuoteError } from './errors';
 
+/**
+ * Returns whether a given character could be an element of a numeric value.
+ * @param c - The character.
+ * @return Whether the character is numeric.
+ */
 function isNumeric(c:string): boolean {
     return (c == '.') || !isNaN(parseInt(c));
 }
 
+/**
+ * Returns whether a given character is a letter.
+ * @param c - The character.
+ * @return Whether the character is a letter.
+ */
 function isLetter(c:string): boolean {
     if (c.match(/[a-z]/i)) {
         return true;
@@ -12,6 +22,11 @@ function isLetter(c:string): boolean {
     return false;
 }
 
+/**
+ * Returns whether a given character is alphanumeric.
+ * @param c - The character.
+ * @return Whether the character is alphanumeric.
+ */
 function isAlpha(c:string): boolean {
     if (c.match(/^[_0-9a-zA-Z]+$/)) {
         return true;
@@ -19,6 +34,11 @@ function isAlpha(c:string): boolean {
     return false;
 }
 
+/**
+ * Returns whether a given character is a newline character.
+ * @param c - The character.
+ * @return Whether the character is a newline.
+ */
 function isNewline(c:string): boolean {
     if (c.match(/\n|\r(?!\n)|\u2028|\u2029|\r\n/g)) {
         return true;
@@ -26,16 +46,28 @@ function isNewline(c:string): boolean {
     return false;
 }
 
+/** Class representing a lexer. */
 class Lexer {
 
+    /** The string to lex. */
     input:string;
+    /** The lexer's current cursor location. */
     cursor:number;
 
+    /**
+     * Creates a lexer.
+     * @param input - The string to lex.
+     * @param cursor - The starting cursor position.
+     */
     constructor(input:string, cursor:number = 0) {
         this.input = input;
         this.cursor = cursor;
     }
 
+    /**
+     * Calling this method lexes the code represented by the provided string.
+     * @return An array of tokens and their corresponding values.
+     */
     lex = (): Array<[Token, (number | String)?]> => {
         let tokens:Array<[Token, (number | String)?]> = [];
         let token:[Token, (number | String)?];
@@ -59,10 +91,19 @@ class Lexer {
         return tokens;
     }
 
+    /**
+     * Reads a character and advances the cursor.
+     * @param num - Optional cursor position modifier.
+     */
     readChar = (num:number=1): string => {
         this.cursor += num;
         return this.input[this.cursor - num];
     }
+
+    /**
+     * Reads a comment.
+     * @return The comment string.
+     */
     readComment = () => {
         let char = this.peek();
         let comment = '';
@@ -74,9 +115,23 @@ class Lexer {
         return comment;
     }
 
+    /**
+     * Determines whether the next character to process equals a given character.
+     * @param c - The given character.
+     * @return Whether the next character equals the given character.
+     */
     peekEq = (c:string): boolean => (this.peek() == c);
+
+    /**
+     * Reads a character without advancing the cursor.
+     * @param index - Optional peek position offset.
+     */
     peek = (index:number=0): string => this.input[this.cursor + index]
 
+    /**
+     * Reads a numeric value.
+     * @return The numeric value as a string.
+     */
     readNumeric = (): string => {
         let num = '';
         while (isNumeric(this.peek())) {
@@ -84,6 +139,11 @@ class Lexer {
         }
         return num;
     }
+
+    /**
+     * Reads an alphanumeric value.
+     * @return The alphanumeric value as a string.
+     */
     readAlpha = (): string => {
         let alpha = '';
         while (isAlpha(this.peek())) {
@@ -91,6 +151,12 @@ class Lexer {
         }
         return alpha;
     }
+
+    /**
+     * Reads a string literal.
+     * @param terminator - The literal's termination character.
+     * @return The literal as a string.
+     */
     readStringLiteral = (terminator:string): string => {
         let lit = '';
         let char = '';
@@ -100,6 +166,10 @@ class Lexer {
         }
         return lit;
     }
+
+    /**
+     * Advances the cusor past the next block of whitespace.
+     */
     skipWhitespace = (): null => {
         while (' \t\n\r\v'.indexOf(this.peek()) > -1) {
             this.cursor += 1;
@@ -107,6 +177,10 @@ class Lexer {
         return null;
     }
     
+    /**
+     * Lexes the next token.
+     * @return The next token and its corresponding value.
+     */
     nextToken = (): [Token, (number | String)?] => {
         this.skipWhitespace();
 
