@@ -146,7 +146,7 @@ The original QMASM author:
 
 ## License
 
-__This package does NOT redistribute or modify - but is inspired by - Los Alamos National Laboratory's original version of QMASM, the license for which is included below as required.__
+__This package does NOT redistribute or modify - but is inspired by - Los Alamos National Laboratory's original version of QMASM, the license for which is included below as an extra precaution. This package is also not meant to endorse or promote any product of any company.__
 
 Copyright © 2016, Triad National Security, LLC All rights reserved.
 
