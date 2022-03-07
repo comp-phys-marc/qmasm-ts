@@ -1,6 +1,6 @@
 {
   "name": "qmasm-ts",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "QMASM, Scott Pakin's quantum macro assembly language for D-Wave's quantum annealers, implemented in TypeScript.",
   "main": "dist/main.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "Language"
   ],
   "author": "Marcus Edwards",
-  "license": "BSD-3-Clause-Attribution",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/comp-phys-marc/qmasm-ts/issues"
   },
